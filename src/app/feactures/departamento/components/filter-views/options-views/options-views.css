@@ -1,0 +1,72 @@
+/* Estilos para los botones de vista */
+.view-toggle-container {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  justify-content: flex-end;
+}
+
+.view-button {
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.view-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2);
+}
+
+.view-button--active {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.view-button--inactive {
+  border-color: #d1d5db;
+  background-color: white;
+  color: #6b7280;
+}
+
+.view-button--inactive:hover {
+  background-color: #f9fafb;
+  color: #2563eb;
+  border-color: #9ca3af;
+}
+
+/* Animación suave para el icono */
+.view-button svg {
+  transition: transform 0.2s ease-in-out;
+}
+
+.view-button:hover svg {
+  transform: scale(1.05);
+}
+
+.view-button--active svg {
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .view-toggle-container {
+    justify-content: center;
+    padding: 1rem 0.5rem;
+  }
+
+  .view-button {
+    padding: 0.75rem;
+  }
+
+  .view-button svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}

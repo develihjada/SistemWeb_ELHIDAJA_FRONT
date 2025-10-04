@@ -1,0 +1,31 @@
+<div class="flex p-2 gap-2 justify-end">
+    <!-- ============================================================================== -->
+    <!-- Botón Vista Tabla -->
+    <!-- ============================================================================== -->
+    <button
+      type="button"
+      (click)="onActionClick('tabla')"
+      title="Vista de tabla"
+      [class]="'p-2 rounded border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 ' +
+               (isActive('tabla')
+                 ? 'border-blue-500 bg-blue-50 text-blue-600'
+                 : 'border-gray-300 hover:bg-gray-100 text-gray-600 hover:text-blue-600')"
+    >
+      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-list"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l11 0" /><path d="M9 12l11 0" /><path d="M9 18l11 0" /><path d="M5 6l0 .01" /><path d="M5 12l0 .01" /><path d="M5 18l0 .01" /></svg>
+    </button>
+
+    <!-- ============================================================================== -->
+    <!-- Botón Vista Cards -->
+    <!-- ============================================================================== -->
+    <button
+      type="button"
+      (click)="onActionClick('card')"
+      title="Vista de tarjetas"
+      [class]="'p-2 rounded border transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 ' +
+               (isActive('card')
+                 ? 'border-blue-500 bg-blue-50 text-blue-600'
+                 : 'border-gray-300 hover:bg-gray-100 text-gray-600 hover:text-blue-600')"
+    >
+      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-blocks"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14 4a1 1 0 0 1 1 -1h5a1 1 0 0 1 1 1v5a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1 -1z" /><path d="M3 14h12a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h3a2 2 0 0 1 2 2v12" /></svg>
+    </button>
+</div>

@@ -1,0 +1,108 @@
+<!-- Table Section -->
+<div class="max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mx-auto">
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+    <div>
+      <h2 class="text-2xl font-bold text-gray-900">Departamentos</h2>
+      <p class="text-sm text-gray-500">Gestiona, edita y organiza tus almacenes fácilmente.</p>
+    </div>
+
+    <div class="flex gap-2">
+      <!-- Search -->
+      @if ((this.departamentosResource.value()?.departamentos?.length ?? 0) > 0){
+      <div class="relative">
+        <input
+          type="text"
+          placeholder="Buscar usuario..."
+          class="pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg w-64 focus:ring-2 focus:ring-blue-600 focus:outline-none"
+        />
+        <svg
+          class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+          width="16"
+          height="16"
+          fill="currentColor"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833z"
+          />
+        </svg>
+      </div>
+      }
+
+
+      <!-- Create User -->
+      <button
+        class=" inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
+        aria-haspopup="dialog"
+        aria-expanded="false"
+        aria-controls="hs-ai-registro-modal"
+        data-hs-overlay="#hs-ai-registro-modal"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-plus"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 5l0 14" />
+          <path d="M5 12l14 0" />
+        </svg>
+        Crear
+      </button>
+    </div>
+  </div>
+  <!-- End Header -->
+
+  <!-- LOADER -->
+  @if (loading()) {
+  <app-skeleton></app-skeleton>
+  }
+
+  <!-- Empty State -->
+  @if (this.departamentosResource.value()?.departamentos?.length == 0) {
+  <app-empty-message Title="Departamentos"></app-empty-message>
+
+  }
+
+  <!-- Tabla usando componente separado -->
+  @if((this.departamentosResource.value()?.departamentos?.length ?? 0) > 0) {
+
+  <app-options-views [vistaActiva]="dataView" (accionClick)="onTipoVista($event)" />
+
+  @if(dataView == 'tabla'){
+  <app-table
+    [departamentos]="this.departamentosResource.value()?.departamentos || []"
+    [loading]="loading()"
+    [showActions]="true"
+    [showPagination]="true"
+    (accionClick)="onAccionTabla($event)"
+    (buscar)="onBuscarDepartamentos($event)"
+  />
+  }
+
+  @if(dataView == 'card') {
+      <app-cards
+     [departamentos]="this.departamentosResource.value()?.departamentos || []"
+    [loading]="loading()"
+    [showActions]="true"
+    [showPagination]="true"
+    (accionClick)="onAccionTabla($event)"
+    (buscar)="onBuscarDepartamentos($event)"
+  ></app-cards>
+  }
+
+}
+</div>
+
+<app-registro-departamento-page
+(departamentoGuardado)="onDepartamentoGuardado($event)"
+  (modalCerrado)="onModalCerrado()"
+  />

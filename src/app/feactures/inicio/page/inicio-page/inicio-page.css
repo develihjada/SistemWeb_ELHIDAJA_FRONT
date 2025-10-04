@@ -1,0 +1,14 @@
+.sidebar-bg {
+  background-image: url('https://i.pinimg.com/736x/9d/54/89/9d548941f6ecdccfdb628932253acdcd.jpg'); /* fondo bonito */
+  background-size: cover;    /* ajusta al tamaño */
+  background-position: center; /* centrado */
+  background-repeat: no-repeat;
+}
+
+.sidebar-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* oscurece un poco */
+  z-index: -1;
+}
