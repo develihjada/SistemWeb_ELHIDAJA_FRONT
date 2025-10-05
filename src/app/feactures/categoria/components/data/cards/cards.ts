@@ -14,24 +14,24 @@ export interface CategoriaAction {
   styleUrl: './cards.css'
 })
 export class Cards {
-  @Input() categorias: Categoria[] = [];
-  @Input() loading = false;
-  @Input() showActions = true;
-  @Input() showPagination = true;
+   @Input() categorias: Categoria[] = [];
+    @Input() loading = false;
+    @Input() showActions = true;
+    @Input() showPagination = true;
 
-  @Output() accionClick = new EventEmitter<CategoriaAction>();
-  @Output() buscar = new EventEmitter<string>();
+    @Output() accionClick = new EventEmitter<CategoriaAction>();
+    @Output() buscar = new EventEmitter<string>();
 
-  onActionClick(type: 'ver' | 'editar' | 'eliminar', categoria: Categoria) {
-    this.accionClick.emit({ type, categoria });
-  }
+    onActionClick(type: 'ver' | 'editar' | 'eliminar', categoria: Categoria) {
+      this.accionClick.emit({ type, categoria });
+    }
 
-  onSearch(event: Event) {
-    const target = event.target as HTMLInputElement;
-    this.buscar.emit(target.value);
-  }
+    onSearch(event: Event) {
+      const target = event.target as HTMLInputElement;
+      this.buscar.emit(target.value);
+    }
 
-  trackByCategoria(index: number, categoria: Categoria): number {
-    return categoria.id;
-  }
+    trackByCategoria(index: number, categoria: Categoria): number {
+      return categoria.id;
+    }
 }

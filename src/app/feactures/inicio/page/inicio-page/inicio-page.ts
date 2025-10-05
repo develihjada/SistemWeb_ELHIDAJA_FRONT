@@ -38,6 +38,24 @@ export class InicioPage {
       roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
       items: [
         {
+          name: 'Movimientos',
+          icon: 'swap_horiz',
+          route: '/inicio/reportes/movimientos',
+          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
+        },
+        {
+          name: 'Proveedores',
+          icon: 'swap_horiz',
+          route: '/inicio/proveedores',
+          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
+        },
+      ],
+    },
+    {
+      title: 'Organización',
+      roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
+      items: [
+        {
           name: 'Usuarios',
           icon: 'person',
           route: '/inicio/usuarios',
@@ -49,12 +67,7 @@ export class InicioPage {
           route: '/inicio/areas',
           roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
         },
-        {
-          name: 'Almacenes',
-          icon: 'warehouse',
-          route: '/inicio/almacenes',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
+
         {
           name: 'Roles',
           icon: 'warehouse',
@@ -70,7 +83,7 @@ export class InicioPage {
       ],
     },
     {
-      title: 'Inventarios',
+      title: 'Productos',
       roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
       items: [
         {
@@ -122,22 +135,15 @@ export class InicioPage {
       roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
       items: [
         {
+          name: 'Almacenes',
+          icon: 'warehouse',
+          route: '/inicio/almacenes',
+          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
+        },
+        {
           name: 'Ubicaciones',
           icon: 'assessment',
           route: '/inicio/ubicaciones-almacen',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-
-        {
-          name: 'Movimientos',
-          icon: 'swap_horiz',
-          route: '/inicio/reportes/movimientos',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-        {
-          name: 'Proveedores',
-          icon: 'swap_horiz',
-          route: '/inicio/proveedores',
           roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
         },
       ],
