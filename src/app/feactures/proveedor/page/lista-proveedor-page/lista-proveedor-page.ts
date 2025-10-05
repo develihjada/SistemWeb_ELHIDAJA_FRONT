@@ -3,10 +3,15 @@ import { ProveedorService } from '../../service/api/proveedor-service';
 import { ResponseListaProveedores } from '../../models/response/listaProveedores.response';
 import { RequestListaProveedores } from '../../models/request/listaProveedores.request';
 import { Proveedores } from '../../models/proveedor';
+import { Skeleton } from "../../../../shared/components/skeleton/skeleton";
+import { EmptyMessage } from "../../../../shared/components/empty-message/empty-message";
+import { OptionsViews } from "../../components/filter-views/options-views/options-views";
+import { ProveedorAction, Table } from "../../components/data/table/table";
+import { Cards } from "../../components/data/cards/cards";
 
 @Component({
   selector: 'app-lista-proveedor-page',
-  imports: [],
+  imports: [Skeleton, EmptyMessage, OptionsViews, Table, Cards],
   templateUrl: './lista-proveedor-page.html',
   styleUrl: './lista-proveedor-page.css'
 })
@@ -49,4 +54,36 @@ export class ListaProveedorPage {
       error: () => this.error()
     };
   }
+
+  // Método para manejar los tipos de vista
+  dataView: 'card' | 'tabla' = 'tabla';
+
+  onTipoVista(action: { type: 'tabla' | 'card' }) {
+    console.log('Tipo de vista seleccionado:', action.type);
+    this.dataView = action.type;
+  }
+
+  // Método para manejar las acciones de la tabla
+      onAccionTabla(action: ProveedorAction) {
+        switch (
+          action.type
+          // case 'ver':
+          //   this.verDetalleCategoria(action.categoria);
+          //   break;
+          // case 'editar':
+          //   this.editarCategoria(action.categoria);
+          //   break;
+          // case 'eliminar':
+          //   this.eliminarCategoria(action.categoria);
+          //   break;
+        ) {
+        }
+      }
+
+        // Método para buscar proveedores
+    onBuscarProveedor(termino: string) {
+      console.log('Buscar:', termino);
+      // Aquí implementarías la lógica de búsqueda
+    }
+
 }
