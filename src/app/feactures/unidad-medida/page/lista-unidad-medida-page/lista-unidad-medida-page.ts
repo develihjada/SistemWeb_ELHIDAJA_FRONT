@@ -80,7 +80,7 @@ export class ListaUnidadMedidaPage {
     }
   }
 
-  // Método para buscar categorías
+  // Método para buscar unidades de medida
   onBuscarUnidadMedida(termino: string) {
     console.log('Buscar:', termino);
     // Aquí implementarías la lógica de búsqueda

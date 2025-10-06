@@ -1,243 +1,103 @@
 <!-- Table Section -->
-<div class="max-w-[85rem] px-4 py-6 sm:px-6 lg:px-6 lg:py-6 mx-auto">
-  <!-- Card -->
-  <div class="flex flex-col">
-    <div class="-m-1.5 overflow-x-auto">
-      <div class="p-1.5 min-w-full inline-block align-middle">
-        <div
-          class="bg-white border border-gray-200 rounded-xl shadow-2xs overflow-hidden"
+<div class="max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mx-auto">
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+    <div>
+      <h2 class="text-2xl font-bold text-gray-900">Sub Categoría</h2>
+      <p class="text-sm text-gray-500">Gestiona, edita y organiza tus subcategorías fácilmente.</p>
+    </div>
+
+    <div class="flex gap-2">
+      <!-- Search -->
+      @if ((this.subCategoriaResource.value()?.subCategorias?.length ?? 0) > 0){
+      <div class="relative">
+        <input
+          type="text"
+          placeholder="Buscar subcategoría..."
+          class="pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg w-64 focus:ring-2 focus:ring-blue-600 focus:outline-none"
+        />
+        <svg
+          class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+          width="16"
+          height="16"
+          fill="currentColor"
+          viewBox="0 0 16 16"
         >
-          <!-- Header -->
-          <div
-            class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200"
-          >
-            <div>
-              <h2 class="text-xl font-semibold text-gray-800">Sub Categoría</h2>
-              <p class="text-sm text-gray-600">
-                Create invoices, edit, download and more.
-              </p>
-            </div>
-
-            <div>
-              <div class="inline-flex gap-x-2">
-                @if((this.subCategoriaResource.value()?.subCategorias?.length ?? 0) >
-                0) {
-                <a
-                  class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                  href="#"
-                >
-                  View all
-                </a>
-                }
-
-                <button
-
-                  class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-blue-600 text-white shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                    aria-haspopup="dialog"
-                    aria-expanded="false"
-                    aria-controls="hs-ai-registro-modal"
-                    data-hs-overlay="#hs-ai-registro-modal"
-                >
-                  <svg
-                    class="shrink-0 size-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M5 12h14" />
-                    <path d="M12 5v14" />
-                  </svg>
-                  Create
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- End Header -->
-
-          @if (loading()) {
-            <div class="flex items-center justify-center min-h-[200px]">
-              <div
-                class="w-12 h-12 border-4 border-gray-300 border-t-blue-600 rounded-full animate-spin"
-              ></div>
-            </div>
-          }
-
-          @if (this.subCategoriaResource.value()?.subCategorias?.length == 0) {
-          <div
-            class="w-full text-center py-10 text-gray-500"
-          >
-            <div class="flex flex-col items-center">
-              <!-- Icono elegante -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-12 w-12 mb-3 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6m4 0v-6a6 6 0 00-12 0v6m-4 0h16"
-                />
-              </svg>
-
-              <!-- Mensaje -->
-              <p class="text-lg font-semibold">No hay unidades de medida registrados</p>
-              <p class="text-sm text-gray-400">
-                Agrega una nueva unidad para comenzar a gestionar tu artículos.
-              </p>
-            </div>
-          </div>
-
-          } @if((this.subCategoriaResource.value()?.subCategorias?.length ?? 0) > 0) {
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th scope="col" class="px-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-gray-800">
-                      ID
-                    </span>
-                  </div>
-                </th>
-
-                <th scope="col" class="px-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-gray-800">
-                      categoria
-                    </span>
-                  </div>
-                </th>
-
-                <th scope="col" class="px-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-gray-800">
-                      Sub Categoría
-                    </span>
-                  </div>
-                </th>
-
-                <th scope="col" class="px-6 py-3 text-start">
-                  <div class="flex items-center gap-x-2">
-                    <span class="text-xs font-semibold uppercase text-gray-800">
-                      Estado
-                    </span>
-                  </div>
-                </th>
-
-                <th scope="col" class="px-6 py-3 text-start">
-                  <span class="text-xs font-semibold uppercase text-gray-800">
-                    Acciones
-                  </span>
-                </th>
-              </tr>
-            </thead>
-
-            <tbody class="divide-y divide-gray-200">
-              @for (item of subCategoriaResource.value()?.subCategorias; track item.id)
-              {
-              <tr class="bg-white hover:bg-gray-50">
-                <td class="size-px whitespace-nowrap">
-                  <span class="block px-6 py-2">
-                    <span class="font-mono text-sm text-blue-600">{{item.id}}</span>
-                  </span>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <span class="block px-6 py-2">
-                    <span class="text-sm text-gray-600">{{item.categoria}}</span>
-                  </span>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <span class="block px-6 py-2">
-                    <span class="text-sm text-gray-600">{{item.nombre}}</span>
-                  </span>
-                </td>
-                <td class="size-px whitespace-nowrap">
-                  <span class="block px-6 py-2">
-                    <span
-                      [class]="'py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-full ' + (item.status ? 'bg-teal-100 text-teal-800' : 'bg-red-100 text-red-800')"
-                    >
-                      <svg
-                        class="size-2.5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                      >
-                        @if (item.status) {
-                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                        } @else {
-                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
-                        }
-                      </svg>
-                      {{item.status ? 'Activo' : 'Inactivo'}}
-                    </span>
-                  </span>
-                </td>
-
-                <td class="size-px whitespace-nowrap">
-                  <button
-                    type="button"
-                    class="block"
-                    aria-haspopup="dialog"
-                    aria-expanded="false"
-                    aria-controls="hs-ai-invoice-modal"
-                  >
-                    <span class="px-6 py-1.5">
-                      <span
-                        class="py-1 px-2 inline-flex justify-center items-center gap-2 rounded-lg border border-gray-200 font-medium bg-white text-gray-700 shadow-2xs align-middle hover:bg-gray-50 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm"
-                      >
-                        <svg
-                          class="shrink-0 size-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          fill="currentColor"
-                          viewBox="0 0 16 16"
-                        >
-                          <path
-                            d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27zm.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0l-.509-.51z"
-                          />
-                          <path
-                            d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z"
-                          />
-                        </svg>
-                        Ver Detalle
-                      </span>
-                    </span>
-                  </button>
-                </td>
-              </tr>
-              }
-            </tbody>
-          </table>
-
-          } @if((this.subCategoriaResource.value()?.subCategorias?.length ?? 0) > 0) {
-          <div
-            class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200"
-          >
-            <div>
-              <p class="text-sm text-gray-600">
-                <span class="font-semibold text-gray-800">{{this.subCategoriaResource.value()?.subCategorias?.length }}</span> Sub Categorías
-              </p>
-            </div>
-          </div>
-          }
-
-        </div>
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833z"
+          />
+        </svg>
       </div>
+      }
+
+      <!-- Create User -->
+      <button
+        class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
+        aria-haspopup="dialog"
+        aria-expanded="false"
+        aria-controls="hs-ai-registro-modal"
+        data-hs-overlay="#hs-ai-registro-modal"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-plus"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M12 5l0 14" />
+          <path d="M5 12l14 0" />
+        </svg>
+        Crear
+      </button>
     </div>
   </div>
-  <!-- End Card -->
-</div>
-<!-- End Table Section -->
+  <!-- End Header -->
 
+  <!-- LOADER -->
+  @if (loading()) {
+  <app-skeleton></app-skeleton>
+  }
+
+  <!-- Empty State -->
+  @if (this.subCategoriaResource.value()?.subCategorias?.length == 0) {
+  <app-empty-message Title="Sub Categoría"></app-empty-message>
+
+  }
+
+  <!-- Tabla usando componente separado -->
+  @if((this.subCategoriaResource.value()?.subCategorias?.length ?? 0) > 0) {
+
+  <app-options-views [vistaActiva]="dataView" (accionClick)="onTipoVista($event)" />
+
+  @if(dataView == 'tabla'){
+  <app-table
+    [subcategorias]="this.subCategoriaResource.value()?.subCategorias || []"
+    [loading]="loading()"
+    [showActions]="true"
+    [showPagination]="true"
+    (accionClick)="onAccionTabla($event)"
+    (buscar)="onBuscarCategoria($event)"
+  />
+  } @if(dataView == 'card') {
+  <app-cards
+    [subcategorias]="this.subCategoriaResource.value()?.subCategorias || []"
+    [loading]="loading()"
+    [showActions]="true"
+    [showPagination]="true"
+    (accionClick)="onAccionTabla($event)"
+    (buscar)="onBuscarCategoria($event)"
+  ></app-cards>
+  } }
+</div>
+
+<!-- <app-registro-departamento-page
+(departamentoGuardado)="onDepartamentoGuardado($event)"
+  (modalCerrado)="onModalCerrado()"
+  /> -->
