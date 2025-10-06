@@ -3,17 +3,17 @@ import { CategoriaService } from '../../service/api/categoria-service';
 import { RequestListaCategoria } from '../../models/request/listaCategoria.request';
 import { ResponseListaCategoria } from '../../models/response/ListaCategorias.response';
 import { Categoria } from '../../models/categoria';
-import { Skeleton } from "../../../../shared/components/skeleton/skeleton";
-import { EmptyMessage } from "../../../../shared/components/empty-message/empty-message";
-import { OptionsViews } from "../../components/filter-views/options-views/options-views";
-import { CategoriaAction, Table } from "../../components/data/table/table";
-import { Cards } from "../../components/data/cards/cards";
+import { Skeleton } from '../../../../shared/components/skeleton/skeleton';
+import { EmptyMessage } from '../../../../shared/components/empty-message/empty-message';
+import { OptionsViews } from '../../components/filter-views/options-views/options-views';
+import { CategoriaAction, Table } from '../../components/data/table/table';
+import { Cards } from '../../components/data/cards/cards';
 
 @Component({
   selector: 'app-lista-categorias-page',
   imports: [Skeleton, EmptyMessage, OptionsViews, Table, Cards],
   templateUrl: './lista-categorias-page.html',
-  styleUrl: './lista-categorias-page.css'
+  styleUrl: './lista-categorias-page.css',
 })
 export class ListaCategoriasPage {
   private apiService = inject(CategoriaService);
@@ -35,15 +35,15 @@ export class ListaCategoriasPage {
     this.error.set(null);
 
     this.apiService.ListarCategoria(this.req()).subscribe({
-      next: (response) => {
+      next: response => {
         this.categoriaData.set(response);
         this.loading.set(false);
       },
-      error: (err) => {
+      error: err => {
         this.error.set('Error al cargar los usuarios');
         this.loading.set(false);
         console.error('Error:', err);
-      }
+      },
     });
   }
 
@@ -51,7 +51,7 @@ export class ListaCategoriasPage {
     return {
       value: () => this.categoriaData(),
       loading: () => this.loading(),
-      error: () => this.error()
+      error: () => this.error(),
     };
   }
 
@@ -64,34 +64,34 @@ export class ListaCategoriasPage {
   }
 
   // Método para manejar las acciones de la tabla
-    onAccionTabla(action: CategoriaAction) {
-      switch (
-        action.type
-        // case 'ver':
-        //   this.verDetalleCategoria(action.categoria);
-        //   break;
-        // case 'editar':
-        //   this.editarCategoria(action.categoria);
-        //   break;
-        // case 'eliminar':
-        //   this.eliminarCategoria(action.categoria);
-        //   break;
-      ) {
-      }
+  onAccionTabla(action: CategoriaAction) {
+    switch (
+      action.type
+      // case 'ver':
+      //   this.verDetalleCategoria(action.categoria);
+      //   break;
+      // case 'editar':
+      //   this.editarCategoria(action.categoria);
+      //   break;
+      // case 'eliminar':
+      //   this.eliminarCategoria(action.categoria);
+      //   break;
+    ) {
     }
+  }
 
-     // Método para buscar categorías
-    onBuscarCategoria(termino: string) {
-      console.log('Buscar:', termino);
-      // Aquí implementarías la lógica de búsqueda
-    }
+  // Método para buscar categorías
+  onBuscarCategoria(termino: string) {
+    console.log('Buscar:', termino);
+    // Aquí implementarías la lógica de búsqueda
+  }
 
-     onCategoriaGuardada(nuevaCategoria: Categoria) {
-        console.log('Nueva categoría guardada:', nuevaCategoria);
-        this.loadCategorias();
-      }
+  onCategoriaGuardada(nuevaCategoria: Categoria) {
+    console.log('Nueva categoría guardada:', nuevaCategoria);
+    this.loadCategorias();
+  }
 
-      onModalCerrado() {
-      console.log('Modal cerrado');
-    }
+  onModalCerrado() {
+    console.log('Modal cerrado');
+  }
 }
