@@ -19,11 +19,6 @@ export const INICIO_ROUTES: Routes = [
     path: 'inicio',
     loadComponent: () => import('./page/inicio-page/inicio-page').then((m) => m.InicioPage),
     children:[
-      {
-        path: '',
-        redirectTo: 'almacenes',
-        pathMatch: 'full'
-      },
       ...ALMACEN_ROUTES,
       ...USUARIOS_ROUTES,
       ...UNIDADMEDIDA_ROUTES,
@@ -39,14 +34,5 @@ export const INICIO_ROUTES: Routes = [
       ...DISTRITO_ROUTES,
       ...PROVINCIAS_ROUTES
     ]
-  },
-  {
-    path: '',
-    redirectTo: 'inicio',
-    pathMatch: 'full'
-  },
-  {
-    path: '**',
-    redirectTo: 'inicio'
   }
 ];
