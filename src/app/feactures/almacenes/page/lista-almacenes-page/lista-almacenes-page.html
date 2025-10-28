@@ -1,65 +1,116 @@
-<!-- Table Section -->
-<div class="max-w-[85rem] px-4 py-8 sm:px-6 lg:px-8 mx-auto">
-  <!-- Header -->
-  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-    <div>
-      <h2 class="text-2xl font-bold text-gray-900">Almacenes</h2>
-      <p class="text-sm text-gray-500">Gestiona, edita y organiza tus almacenes fácilmente.</p>
-    </div>
-
-    <div class="flex gap-2">
-      <!-- Search -->
-      @if ((this.almacenesResource.value()?.almacenes?.length ?? 0) > 0){
-      <div class="relative">
-        <input
-          type="text"
-          placeholder="Buscar usuario..."
-          class="pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-lg w-64 focus:ring-2 focus:ring-blue-600 focus:outline-none"
-        />
-        <svg
-          class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-          width="16"
-          height="16"
-          fill="currentColor"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833z"
-          />
-        </svg>
+<div class="space-y-6">
+  <div class="p-4 sm:p-6">
+    <div
+      class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0"
+    >
+      <div class="flex-shrink-0">
+        <h2 class="text-2xl font-bold text-gray-900">Almacenes</h2>
+        <p class="text-sm text-gray-500">Gestiona, edita y organiza tus almacenes fácilmente.</p>
       </div>
-      }
 
-      <!-- Create User -->
-      <button
-        class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 text-white shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
-        aria-haspopup="dialog"
-        aria-expanded="false"
-        aria-controls="hs-ai-registro-modal"
-        data-hs-overlay="#hs-ai-registro-modal"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="icon icon-tabler icons-tabler-outline icon-tabler-plus"
+      <div class="flex space-x-3 flex-shrink-0">
+        <button
+          class="flex items-center px-4 py-2 text-sm font-semibold rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition duration-150 shadow-lg"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          aria-controls="hs-ai-registro-modal"
+          data-hs-overlay="#hs-ai-registro-modal"
         >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M12 5l0 14" />
-          <path d="M5 12l14 0" />
-        </svg>
-        Crear
-      </button>
+          <svg
+            class="size-5 mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="12" x2="12" y1="5" y2="19" />
+            <line x1="5" x2="19" y1="12" y2="12" />
+          </svg>
+          Nuevo
+        </button>
+
+        <button
+          class="hidden sm:flex items-center px-4 py-2 text-sm font-semibold rounded-lg text-gray-700 bg-gray-100 hover:bg-gray-200 transition duration-150 border border-gray-300"
+        >
+          <svg
+            class="size-5 mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v3" />
+            <polyline points="14 2 14 8 20 8" />
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="8 12 12 16 16 12" />
+          </svg>
+          Exportar
+        </button>
+      </div>
     </div>
   </div>
-  <!-- End Header -->
+  <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md border border-gray-200">
+    <div class="flex justify-between">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full">
+        <h3 class="text-md font-semibold text-gray-800 flex-shrink-0">Filtros:</h3>
 
+        <div class="relative flex-grow sm:flex-grow-0 w-full sm:w-64">
+          <input
+            type="text"
+            placeholder="Buscar por ID, Responsable..."
+            class="w-full p-2 pl-10 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 text-sm transition"
+          />
+          <svg
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-gray-400"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </div>
+
+        <select
+          class="p-2 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-blue-500 text-sm w-full sm:w-auto flex-shrink-0"
+        >
+          <option value="Todos">Todos los Almacenes</option>
+          <option value="Central">Central</option>
+          <option value="Sucursal A">Sucursal A</option>
+        </select>
+
+        <div class="flex space-x-2 w-full sm:w-auto flex-shrink-0">
+          <button
+            class="px-4 py-2 text-sm font-semibold rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition duration-150 w-full"
+          >
+            Aplicar
+          </button>
+          <button
+            class="px-4 py-2 text-sm font-semibold rounded-lg text-gray-700 bg-gray-100 hover:bg-gray-200 transition duration-150 w-full"
+          >
+            Limpiar
+          </button>
+        </div>
+      </div>
+      <app-options-views [vistaActiva]="dataView" (accionClick)="onTipoVista($event)" />
+    </div>
+  </div>
   <!-- LOADER -->
   @if (loading()) {
   <app-skeleton></app-skeleton>
@@ -72,13 +123,9 @@
 
   <!-- Tabla usando componente separado -->
   @if ((this.almacenesResource.value()?.almacenes?.length ?? 0) > 0) {
-  <app-options-views
-    [vistaActiva]="dataView"
-    (accionClick)="onTipoVista($event)"
-  />
 
   @if(dataView == 'tabla'){
-    <app-table
+  <app-table
     [almacenes]="this.almacenesResource.value()?.almacenes || []"
     [loading]="loading()"
     [showActions]="true"
@@ -86,20 +133,16 @@
     (accionClick)="onAccionTabla($event)"
     (buscar)="onBuscarAlmacenes($event)"
   />
-  }
-
-  @if(dataView == 'card') {
-      <app-cards
-     [almacenes]="this.almacenesResource.value()?.almacenes || []"
+  } @if(dataView == 'card') {
+  <app-cards
+    [almacenes]="this.almacenesResource.value()?.almacenes || []"
     [loading]="loading()"
     [showActions]="true"
     [showPagination]="true"
     (accionClick)="onAccionTabla($event)"
     (buscar)="onBuscarAlmacenes($event)"
   ></app-cards>
-  }
-
-  }
+  } }
 </div>
 
 <app-registro-almacenes-page

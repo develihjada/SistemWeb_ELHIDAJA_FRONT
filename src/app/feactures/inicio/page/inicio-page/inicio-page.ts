@@ -1,16 +1,16 @@
-import { Component, inject } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common'; // Necesario para @for y @if
 
-interface MenuItem {
-  name: string;
+// ===================================
+// INTERFACES Y ENUMS
+// ===================================
+
+interface DashboardModuleCard {
+  title: string;
+  description: string;
   icon: string;
   route: string;
-  roles: UserRole[];
-}
-
-interface MenuSection {
-  title: string;
-  items: MenuItem[];
   roles: UserRole[];
 }
 
@@ -22,183 +22,79 @@ enum UserRole {
 
 @Component({
   selector: 'app-inicio-page',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './inicio-page.html',
   styleUrl: './inicio-page.css',
+  standalone: true
 })
-export class InicioPage {
+export class InicioPage implements OnInit {
   private readonly router = inject(Router);
 
-  // Simulación del rol actual del usuario (esto vendría del servicio de autenticación)
+  // Simulación del rol actual del usuario (CAMBIA ESTO PARA PRUEBAS)
   currentUserRole: UserRole = UserRole.ADMINISTRADOR;
 
-  menuSections: MenuSection[] = [
+  dashboardModules: DashboardModuleCard[] = [
     {
-      title: 'Sistema',
-      roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-      items: [
-        {
-          name: 'Movimientos',
-          icon: 'swap_horiz',
-          route: '/inicio/reportes/movimientos',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-        {
-          name: 'Proveedores',
-          icon: 'swap_horiz',
-          route: '/inicio/proveedores',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-      ],
+        title: 'Logística y Almacén',
+        description: 'Gestión completa de inventarios, movimientos (entradas/salidas), y administración de ubicaciones.',
+        icon: 'warehouse',
+        route: '/inicio/logistica-almacen',
+        roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE, UserRole.SECRETARIA],
     },
     {
-      title: 'Organización',
-      roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-      items: [
-        {
-          name: 'Usuarios',
-          icon: 'person',
-          route: '/inicio/usuarios',
-          roles: [UserRole.ADMINISTRADOR],
-        },
-        {
-          name: 'Áreas',
-          icon: 'assessment',
-          route: '/inicio/areas',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-
-        {
-          name: 'Roles',
-          icon: 'warehouse',
-          route: '/inicio/roles',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-        {
-          name: 'Puestos',
-          icon: 'warehouse',
-          route: '/inicio/puestos',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-      ],
+        title: 'Maestros de Productos',
+        description: 'Catálogo centralizado de artículos, categorías, subcategorías y unidades de medida.',
+        icon: 'inventory',
+        route: '/inicio/maestros-productos',
+        roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
     },
     {
-      title: 'Productos',
-      roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-      items: [
-        {
-          name: 'Productos',
-          icon: 'inventory',
-          route: '/inicio/articulos',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-        {
-          name: 'Categorías',
-          icon: 'category',
-          route: '/inicio/categorias',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-         {
-          name: 'Sub Categorías',
-          icon: 'category',
-          route: '/inicio/sub-categoria',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-        {
-          name: 'Unidad Medida',
-          icon: 'inventory',
-          route: '/inicio/unidad-medida',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-      ],
+        title: 'Servicios y Proyectos',
+        description: 'Gestión de clientes, seguimiento de proyectos, y vinculación directa con la facturación.',
+        icon: 'assignment',
+        route: '/inicio/proyectos',
+        roles: [UserRole.ADMINISTRADOR, UserRole.SECRETARIA],
     },
     {
-      title: 'Reportes',
-      roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-      items: [
-        {
-          name: 'Inventario',
-          icon: 'assessment',
-          route: '/inicio/reportes/inventario',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-        {
-          name: 'Movimientos',
-          icon: 'swap_horiz',
-          route: '/inicio/reportes/movimientos',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-      ],
+        title: 'Facturación',
+        description: 'Emisión, registro y seguimiento de documentos de venta y cuentas por cobrar del negocio.',
+        icon: 'receipt',
+        route: '/inicio/facturacion/documentos',
+        roles: [UserRole.ADMINISTRADOR, UserRole.SECRETARIA],
     },
     {
-      title: 'ALMACÉN',
-      roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-      items: [
-        {
-          name: 'Almacenes',
-          icon: 'warehouse',
-          route: '/inicio/almacenes',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-        {
-          name: 'Ubicaciones',
-          icon: 'assessment',
-          route: '/inicio/ubicaciones-almacen',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-      ],
+        title: 'Reportes y Analíticas',
+        description: 'Informes clave sobre el inventario, movimientos históricos y desempeño del sistema.',
+        icon: 'bar_chart',
+        route: '/inicio/reportes-analiticos',
+        roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE, UserRole.SECRETARIA],
     },
     {
-      title: 'GEOLOCALIZACIÓN',
-      roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-      items: [
-        {
-          name: 'Departamentos',
-          icon: 'assessment',
-          route: '/inicio/departamentos',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-        {
-          name: 'Provincias',
-          icon: 'assessment',
-          route: '/inicio/provincias',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-        {
-          name: 'Distritos',
-          icon: 'assessment',
-          route: '/inicio/distritos',
-          roles: [UserRole.ADMINISTRADOR, UserRole.SOPORTE],
-        },
-      ],
+        title: 'Administración y Configuración',
+        description: 'Gestión de usuarios, roles, permisos, áreas, puestos y datos maestros globales (geolocalización).',
+        icon: 'settings',
+        route: '/inicio/administrativo-configuraciones',
+        roles: [UserRole.ADMINISTRADOR],
     },
   ];
 
   ngOnInit(): void {
-    // Aquí podrías obtener el rol del usuario desde un servicio de autenticación
-    // this.currentUserRole = this.authService.getCurrentUserRole();
+      // Aquí se podría cargar el rol del usuario desde un servicio real.
+      // this.currentUserRole = this.authService.getCurrentUserRole();
   }
 
-  // Filtrar secciones del menú según el rol actual
-  getVisibleMenuSections(): MenuSection[] {
-    return this.menuSections.filter((section) =>
-      section.roles.includes(this.currentUserRole)
+  /**
+   * Filtra las tarjetas de módulo según el rol actual del usuario.
+   */
+  getVisibleModuleCards(): DashboardModuleCard[] {
+    return this.dashboardModules.filter((card) =>
+      card.roles.includes(this.currentUserRole)
     );
   }
 
-  // Filtrar items de menú según el rol actual
-  getVisibleMenuItems(items: MenuItem[]): MenuItem[] {
-    return items.filter((item) =>
-      item.roles.includes(this.currentUserRole)
-    );
-  }
-
-  // Método para cambiar el rol (para testing)
-  setUserRole(role: UserRole): void {
-    this.currentUserRole = role;
-  }
-
-  // Método para obtener el nombre amigable del rol
+  /**
+   * Obtiene el nombre amigable del rol.
+   */
   getRoleDisplayName(role: UserRole): string {
     const roleNames = {
       [UserRole.ADMINISTRADOR]: 'Administrador',
@@ -206,5 +102,12 @@ export class InicioPage {
       [UserRole.SECRETARIA]: 'Secretaría',
     };
     return roleNames[role];
+  }
+
+  /**
+   * Método de prueba para cambiar el rol (opcional, para desarrollo).
+   */
+  setUserRole(role: UserRole): void {
+    this.currentUserRole = role;
   }
 }
